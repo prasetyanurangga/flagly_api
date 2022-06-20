@@ -1,0 +1,100 @@
+{
+    "schemes": [
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Calculate Distance, Bearing and Direction Compass.",
+        "title": "Flagly API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "prasetyanurangga.github.io",
+            "email": "angganurprasetya4@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "pintas.my.id",
+    "basePath": "/",
+    "paths": {
+        "/calculate_distance_bearing": {
+            "post": {
+                "description": "Calculate Distance, Bearing and Direction Compass by Coordinate",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "\"Flagly Api\""
+                ],
+                "summary": "Calculate Distance, Bearing and Direction Compass.",
+                "parameters": [
+                    {
+                        "description": "Lat Long Data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.LatLong"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.LatLong": {
+            "type": "object",
+            "properties": {
+                "lat_from": {
+                    "type": "number"
+                },
+                "lat_to": {
+                    "type": "number"
+                },
+                "lng_from": {
+                    "type": "number"
+                },
+                "lng_to": {
+                    "type": "number"
+                }
+            }
+        },
+        "main.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/main.ResponseItem"
+                }
+            }
+        },
+        "main.ResponseItem": {
+            "type": "object",
+            "properties": {
+                "bearing": {
+                    "type": "integer"
+                },
+                "direction": {
+                    "type": "string"
+                },
+                "distance": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+basePath: /
+definitions:
+  main.LatLong:
+    properties:
+      lat_from:
+        type: number
+      lat_to:
+        type: number
+      lng_from:
+        type: number
+      lng_to:
+        type: number
+    type: object
+  main.Response:
+    properties:
+      data:
+        $ref: '#/definitions/main.ResponseItem'
+    type: object
+  main.ResponseItem:
+    properties:
+      bearing:
+        type: integer
+      direction:
+        type: string
+      distance:
+        type: integer
+    type: object
+host: pintas.my.id
+info:
+  contact:
+    email: angganurprasetya4@gmail.com
+    name: API Support
+    url: prasetyanurangga.github.io
+  description: Calculate Distance, Bearing and Direction Compass.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Flagly API
+  version: "1.0"
+paths:
+  /calculate_distance_bearing:
+    post:
+      consumes:
+      - application/json
+      description: Calculate Distance, Bearing and Direction Compass by Coordinate
+      parameters:
+      - description: Lat Long Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.LatLong'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Response'
+      summary: Calculate Distance, Bearing and Direction Compass.
+      tags:
+      - '"Flagly Api"'
+schemes:
+- https
+swagger: "2.0"
